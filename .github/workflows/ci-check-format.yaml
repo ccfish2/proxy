@@ -32,7 +32,7 @@ jobs:
       - name: Wait for cilium-envoy-builder to be available
         timeout-minutes: 45
         shell: bash
-        run: until docker manifest inspect quay.io/${{secretes.QUAY_USERNAME }}/cilium-envoy-builder-dev:${{ env.BUILDER_DOCKER_HASH }} &> /dev/null; do sleep 15s; done
+        run: until docker manifest inspect quay.io/${{secrets.QUAY_USERNAME }}/cilium-envoy-builder-dev:${{ env.BUILDER_DOCKER_HASH }} &> /dev/null; do sleep 15s; done
 
       - name: Check format
         uses: docker/build-push-action@14487ce63c7a62a4a324b0bfb37086795e31c6c1 # v6.16.0
@@ -45,7 +45,7 @@ jobs:
           platforms: linux/amd64
           outputs: type=local,dest=check-format-results
           build-args: |
-            BUILDER_BASE=quay.io/${{secretes.QUAY_USERNAME }}/cilium-envoy-builder-dev:${{ env.BUILDER_DOCKER_HASH }}
+            BUILDER_BASE=quay.io/${{secrets.QUAY_USERNAME }}/cilium-envoy-builder-dev:${{ env.BUILDER_DOCKER_HASH }}
           cache-from: type=local,src=/tmp/buildx-cache
           push: false
 
