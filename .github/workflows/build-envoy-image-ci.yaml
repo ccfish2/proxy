@@ -1,7 +1,7 @@
 name: CI Build & Push
 on:
   pull_request_target:
-    types: [opened, synchronize, reopened]
+    types: [opened, reopened]
 
 permissions:
   # To be able to access the repository with `actions/checkout`
