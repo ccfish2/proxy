@@ -1,15 +1,16 @@
 name: Cilium Integration Tests
 on:
-  push:
-    branches:
-      - main
-  pull_request_target:
-    types:
-      - opened
-      - reopened
-      - synchronize
-    branches:
-      - main
+  workflow_dispatch: # never happen
+  # push:
+  #   branches:
+  #     - main
+  # pull_request_target:
+  #   types:
+  #     - opened
+  #     - reopened
+  #     - synchronize
+  #   branches:
+  #     - main
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.event.after }}
